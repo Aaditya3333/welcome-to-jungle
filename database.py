@@ -4,8 +4,12 @@ import os
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
+print("=== DATABASE DEBUG ====")
 print(f"DATABASE_URL found: {DATABASE_URL is not None}")
-print(f"DATABASE_URL value: {DATABASE_URL}")
+if DATABASE_URL:
+    print(f"DATABASE_URL value: {DATABASE_URL}")
+else:
+    print("DATABASE_URL is None!")
 
 if not DATABASE_URL:
     raise ValueError("DATABASE_URL environment variable is not set")
