@@ -19,3 +19,4 @@ services:
     runtime: postgresql
     plan: free
     databaseName: magix
+    ipAllowList: []
