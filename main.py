@@ -1,4 +1,4 @@
-''''from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 import models, schemas, crud
@@ -49,88 +49,4 @@ def delete(todo_id: int, db: Session = Depends(get_db)):
     todo = crud.delete_todo(db, todo_id)
     if not todo:
         raise HTTPException(status_code=404, detail="Todo not found")
-    return {"message": "Todo deleted"} '''
-
-from fastapi import FastAPI
-from pydantic import BaseModel
-from typing import Optional
-app = FastAPI()
-
-class Item(BaseModel):
-    name: str
-    price: int
-
-class Movie(BaseModel):
-    name: str
-    rating: float
-
-@app.post("/movies")
-def add_movie(movie: Movie):
-    return {"movie": movie}
-
-@app.get("/")
-def home():
-    return {"message": "Welcome Home"}
-
-@app.get("/about")
-def about():
-    return {"message": "This is About Page"}
-
-@app.get("/contact")
-def contact():
-    return {"message": "Contact us here"}
-
-@app.get("/user/{user_id}")
-def get_user(user_id: int):
-    return {"user_id": user_id}
-
-@app.get("/student/{name}/{age}")
-def get_student(name: str, age: int):
-    return {"name": name, "age": age}
-
-@app.get("/product/{product_id}")
-def get_product(product_id: int):
-    return {"product_id": product_id}
-
-@app.get("/items")
-def get_items(name: str, price: int):
-    return {"name": name, "price": price}
-
-@app.get("/products")
-def get_products(name: str = "unknown", price: int = 0):
-    return {"name": name, "price": price}
-
-
-
-@app.get("/search")
-def search_item(name: Optional[str] = None):
-    return {"search": name}
-
-@app.get("/filter")
-def filter_items(name: str, price: int, brand: str):
-    return {
-        "name": name,
-        "price": price,
-        "brand": brand
-    }
-
-@app.get("/movies")
-def get_movies(name:str, rating:float):
-    return {"name":name, "rating":rating}
-
-@app.post("/create")
-def create_item(name: str, price: int):
-    return {
-        "message": "Item created",
-        "name": name,
-        "price": price
-    }
-
-@app.post("/items")
-def create_item(item: Item):
-    return {
-        "message": "Item created successfully",
-        "data":item
-    }
-
-print("Hello World")
+    return {"message": "Todo deleted"}
