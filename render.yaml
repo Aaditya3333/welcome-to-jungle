@@ -19,4 +19,3 @@ services:
     runtime: postgresql
     plan: free
     databaseName: magix
-    user: postgres
